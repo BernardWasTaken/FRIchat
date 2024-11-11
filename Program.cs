@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using FRIchat.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<FRIchatContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("FRIchatContext") ?? throw new InvalidOperationException("Connection string 'FRIchatContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
