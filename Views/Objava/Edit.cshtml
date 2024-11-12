@@ -1,0 +1,61 @@
+@model FRIchat.Models.Objava
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Objava</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Naslov" class="control-label"></label>
+                <input asp-for="Naslov" class="form-control" />
+                <span asp-validation-for="Naslov" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vsebina" class="control-label"></label>
+                <input asp-for="Vsebina" class="form-control" />
+                <span asp-validation-for="Vsebina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tip" class="control-label"></label>
+                <input asp-for="Tip" class="form-control" />
+                <span asp-validation-for="Tip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumObjave" class="control-label"></label>
+                <input asp-for="DatumObjave" class="form-control" />
+                <span asp-validation-for="DatumObjave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PredmetId" class="control-label"></label>
+                <input asp-for="PredmetId" class="form-control" />
+                <span asp-validation-for="PredmetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Avtor" class="control-label"></label>
+                <input asp-for="Avtor" class="form-control" />
+                <span asp-validation-for="Avtor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
