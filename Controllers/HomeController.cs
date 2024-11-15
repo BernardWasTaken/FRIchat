@@ -23,6 +23,16 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Register()
+    {
+        return Redirect($"/Uporabnik/Create");
+    }
+    
+    public IActionResult Login()
+    {
+        return Redirect($"/Uporabnik/Login");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

@@ -48,6 +48,11 @@ namespace FRIchat.Controllers
         {
             return View();
         }
+        
+        public IActionResult Login()
+        {
+            return View();
+        }
 
         // POST: Uporabnik/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -63,6 +68,17 @@ namespace FRIchat.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(uporabnik);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CheckCredentials([Bind("Email, Geslo")] Uporabnik uporabnik)
+        {
+            if (_context.Uporabnik.Any(e => e.Email == uporabnik.Email && e.Geslo == uporabnik.Geslo))
+            {
+                return Redirect($"../Home");
+            }
+            return Redirect("/Uporabnik/Login");
         }
 
         // GET: Uporabnik/Edit/5

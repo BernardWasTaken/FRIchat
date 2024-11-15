@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.push-right{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+}
