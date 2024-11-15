@@ -7,16 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FRIchat.Data;
 using FRIchat.Models;
+using FRIchat.Utilities;
 
 namespace FRIchat.Controllers
 {
     public class UporabnikController : Controller
     {
         private readonly FRIchatContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger<UporabnikController> _logger;
 
-        public UporabnikController(FRIchatContext context)
+        public UporabnikController(
+            FRIchatContext context,
+            IHttpContextAccessor httpContextAccessor,
+            ILogger<UporabnikController> logger
+            )
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+            _logger = logger;
         }
 
         // GET: Uporabnik
@@ -76,11 +85,14 @@ namespace FRIchat.Controllers
         {
             if (_context.Uporabnik.Any(e => e.Email == uporabnik.Email && e.Geslo == uporabnik.Geslo))
             {
-                return Redirect($"../Home");
+                Utilities.Cookies.SetCookie(_httpContextAccessor, uporabnik.Email);
+                return RedirectToAction("Index", "Home");
             }
-            return Redirect("/Uporabnik/Login");
-        }
 
+            return RedirectToAction("Login", "Uporabnik");
+        }
+        
+        
         // GET: Uporabnik/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

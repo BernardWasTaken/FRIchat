@@ -7,14 +7,25 @@ namespace FRIchat.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
     {
         _logger = logger;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     public IActionResult Index()
     {
+        if (Utilities.Cookies.CookieExists(_httpContextAccessor))
+        {
+            ViewData["IsLoggedIn"] = true;
+        }
+        else
+        {
+            ViewData["IsLoggedIn"] = false;
+        }
+        
         return View();
     }
 
@@ -25,12 +36,18 @@ public class HomeController : Controller
 
     public IActionResult Register()
     {
-        return Redirect($"/Uporabnik/Create");
+        return RedirectToAction("Create", "Uporabnik");
     }
     
     public IActionResult Login()
     {
-        return Redirect($"/Uporabnik/Login");
+        return RedirectToAction("Login", "Uporabnik");
+    }
+
+    public IActionResult Logout()
+    {
+        Utilities.Cookies.ClearCookie(_httpContextAccessor);
+        return RedirectToAction("Index", "Home");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
