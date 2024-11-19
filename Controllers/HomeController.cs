@@ -26,7 +26,7 @@ public class HomeController : Controller
             ViewData["IsLoggedIn"] = false;
         }
         
-        return View();
+        return View("Home");
     }
 
     public IActionResult Privacy()
@@ -43,6 +43,7 @@ public class HomeController : Controller
     {
         return RedirectToAction("Login", "Uporabnik");
     }
+
 
     public IActionResult Logout()
     {

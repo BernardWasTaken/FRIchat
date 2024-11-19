@@ -53,7 +53,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Uporabnik/Create
-        public IActionResult Create()
+        public IActionResult Register()
         {
             return View();
         }
