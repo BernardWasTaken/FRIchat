@@ -54,20 +54,25 @@ namespace FRIchat.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+        bool cookieRemoved = Utilities.Cookies.ClearCookie(_httpContextAccessor);
+
+        return RedirectToAction("Login", "Uporabnik");
+        }
+
         // POST: Uporabnik/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ime,Email,Geslo,Telefon")] Uporabnik uporabnik)
+        public async Task<IActionResult> Register([Bind("Id,Ime,Email,Geslo,Telefon")] Uporabnik uporabnik)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(uporabnik);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            return View(uporabnik);
+            return View();
         }
         
         [HttpPost]

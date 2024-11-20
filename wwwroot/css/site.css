@@ -9,12 +9,11 @@ body{
 
 nav{
   background-color: #E12A26;
-  padding-left: 5vw;
-  padding-right: 5vw;
 }
 
 nav ul{
-  width: 100%;
+  width: 90vw;
+  margin: 0 auto;
   list-style: none;
   display: flex;
   justify-content: flex-end;
@@ -29,11 +28,12 @@ nav ul li a {
 .logo {
   font-size: 80px;
   font-weight: bolder;
+  padding: 0;
 }
 
 nav a{
   height: 100%;
-  padding: 0 30px;
+  padding-right: 30px;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -83,9 +83,8 @@ nav li:first-child{
   border: 0.5px solid black;
   border-radius: 20px;
   width: 40vw;
-  margin-left: 30vw;
-  margin-right: 30vw;
-  margin-top: 10vh;
+  margin-left: 25vw;
+  margin-right: 25vw;
   margin-bottom: 10vh;
   padding-top: 10vh;
   padding-bottom: 20vh;
@@ -110,9 +109,8 @@ nav li:first-child{
   border: 0.5px solid black;
   border-radius: 20px;
   width: 40vw;
-  margin-left: 30vw;
-  margin-right: 30vw;
-  margin-top: 10vh;
+  margin-left: 25vw;
+  margin-right: 25vw;
   margin-bottom: 10vh;
   padding-top: 10vh;
   padding-bottom: 20vh;
@@ -133,3 +131,10 @@ nav li:first-child{
   border-radius: 5px;
 }
 
+
+
+.hero {
+  width: 90vw;
+  margin: 0 auto;
+  padding: 100px 0;
+}
