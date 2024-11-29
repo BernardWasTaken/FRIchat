@@ -3,6 +3,7 @@ using System;
 using FRIchat.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FRIchat.Migrations
 {
     [DbContext(typeof(FRIchatContext))]
-    partial class FRIchatContextModelSnapshot : ModelSnapshot
+    [Migration("20241122094125_new_2")]
+    partial class new_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -49,7 +52,7 @@ namespace FRIchat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Objava", (string)null);
+                    b.ToTable("Objava");
                 });
 
             modelBuilder.Entity("FRIchat.Models.Odgovor", b =>
@@ -71,7 +74,7 @@ namespace FRIchat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Odgovor", (string)null);
+                    b.ToTable("Odgovor");
                 });
 
             modelBuilder.Entity("FRIchat.Models.OdgovorObjava", b =>
@@ -88,7 +91,7 @@ namespace FRIchat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OdgovorObjava", (string)null);
+                    b.ToTable("OdgovorObjava");
                 });
 
             modelBuilder.Entity("FRIchat.Models.Predmet", b =>
@@ -110,7 +113,7 @@ namespace FRIchat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Predmet", (string)null);
+                    b.ToTable("Predmet");
                 });
 
             modelBuilder.Entity("FRIchat.Models.Uporabnik", b =>
@@ -187,7 +190,7 @@ namespace FRIchat.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("Uporabnik", (string)null);
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

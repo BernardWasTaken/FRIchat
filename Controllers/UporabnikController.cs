@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FRIchat.Data;
 using FRIchat.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FRIchat.Controllers
 {
+    
     public class UporabnikController : Controller
     {
         private readonly FRIchatContext _context;
@@ -26,6 +28,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Uporabnik/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Uporabnik/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
