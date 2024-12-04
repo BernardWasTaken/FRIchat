@@ -22,6 +22,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Uporabnik
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Uporabnik.ToListAsync());
