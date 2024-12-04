@@ -25,11 +25,6 @@ namespace FRIchat.Controllers
             return View(await _context.Objava.ToListAsync());
         }
         
-        public async Task<IActionResult> Dashboard()
-        {
-            return View();
-        }
-        
         // GET: Objava/Details/5
         public async Task<IActionResult> Details(int? id)
         {
