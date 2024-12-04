@@ -1,7 +1,60 @@
-﻿@{
+﻿@model IEnumerable<FRIchat.Models.Predmet>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="izberi-predmet">
-    tuki pride seznam predmetov
+
+    <div class="predmet">
+        <h1>Predmeti v 1. letniku</h1>
+        <table>
+            <tbody>
+                @foreach (var item in Model) {
+                    if (item.Letnik == 1) {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Ime, "Details", "Predmet", new { id = item.Id }, new { @class = "predmet-link" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="predmet">
+        <h1>Predmeti v 2. letniku</h1>
+        <table>
+            <tbody>
+                @foreach (var item in Model) {
+                    if (item.Letnik == 2) {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Ime, "Details", "Predmet", new { id = item.Id }, new { @class = "predmet-link" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="predmet">
+        <h1>Predmeti v 3. letniku</h1>
+        <table>
+            <tbody>
+                @foreach (var item in Model) {
+                    if (item.Letnik == 3) {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Ime, "Details", "Predmet", new { id = item.Id }, new { @class = "predmet-link" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+
 </div>

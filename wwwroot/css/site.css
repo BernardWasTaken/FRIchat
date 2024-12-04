@@ -1,29 +1,163 @@
-html {
-  font-size: 14px;
+*{
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+body{
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+nav{
+  background-color: #E12A26;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.navbar-logo {
+  font-size: 40px;
+}
+
+nav ul{
+  color: white;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li{
+  height: 80px;
+}
+
+nav ul li form button {
+  color: white;
+  border: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0;
+  background-color: #E12A26;
+}
+
+nav a{
+  color: white;
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+nav li:first-child{
+  margin-right: auto;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0; 
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #e12926;
+  color: white;
+}
+.sidebar li{
+  width: 100%;
+}
+.sidebar a{
+  width: 100%;
+  text-decoration: none;
+  color: white;
+}
+.menu-button{
+  display: none;
+}
+@media(max-width: 800px){
+  .hideOnMobile{
+    display: none;
+  }
+  .menu-button{
+    display: block;
+    padding: 0;
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+@media(max-width: 400px){
+  .sidebar{
+    width: 100%;
+  }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+
+
+
+
+
+
+
+
+
+
+.hero {
+  width: 80vw;
+  margin: 5vh 10vw;
 }
 
-body {
-  margin-bottom: 60px;
+.predmet {
+  margin-top: 5vh;
+  padding: 2vh;
+  border-radius: 5px;
+  border: 2px rgba(225, 42, 38, 0.5) solid; 
 }
 
-.push-right{
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  right: 0;
+.predmet-link {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  align-items: center;
+}
+
+
+
+.login {
+  width: 40vw;
+  margin: 0 20vw;
+  border: 2px rgba(225, 42, 38, 0.5) solid; 
+  border-radius: 5px;
+}
+
+.login form{
+  margin: 20px;
+}
+
+.login .form {
+  padding: 5px 0px;
+}
+
+.login button {
+  height: 40px;
+  width: 120px;
+  background-color: #e12926;
+  color: white;
+  font-weight: 800;
+  border: 2px solid #e12926;
+}
+
+.login button:hover {
+  height: 40px;
+  width: 120px;
+  background-color: white;
+  color: #e12926;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  border: 2px solid #e12926;
+  cursor: pointer;
 }
