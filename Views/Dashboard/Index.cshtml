@@ -1,0 +1,26 @@
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "_Layout";
+}
+@model IEnumerable<FRIchat.Models.Objava>
+
+<div>
+    <a asp-area="" asp-controller="Objava" asp-action="Create">Open a new conversation</a>
+    <div class="chats">
+        @{
+            if (Model != null && Model.Any())
+            {
+                foreach (var objava in Model)
+                {
+                    <div>@objava.Avtor</div>
+                    <div>@objava.Naslov</div>
+                    <div>@objava.DatumObjave</div>
+                }   
+            }
+            else
+            {
+                <div>nothing to show.</div>
+            }
+        }
+    </div>
+</div>
