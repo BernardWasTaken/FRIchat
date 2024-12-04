@@ -28,6 +28,13 @@ namespace FRIchat.Controllers
             return View(await _context.Uporabnik.ToListAsync());
         }
 
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var uporabnik = await _context.Uporabnik.ToListAsync();
+            return View(uporabnik);
+        }
+
         // GET: Uporabnik/Details/5
         [Authorize]
         public async Task<IActionResult> Details(int? id)
