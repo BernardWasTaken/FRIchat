@@ -1,0 +1,13 @@
+@model IEnumerable<FRIchat.Models.Uporabnik>
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "_Layout";
+}
+
+@{
+    foreach (var uporabnik in Model)
+    {
+        <h2>@Html.DisplayFor(item => uporabnik.Email)</h2>
+    }
+}
