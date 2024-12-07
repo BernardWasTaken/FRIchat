@@ -1,4 +1,6 @@
 @model FRIchat.Models.Predmet
+@using Microsoft.AspNetCore.Identity
+@using FRIchat.Models
 
 @{
     ViewData["Title"] = "Details";
@@ -29,10 +31,15 @@
     </dl>
 
     <div class="komentarji">
-        Napišite komentar:
-        <form action="">
-            <textarea style="width: 80vw; height: 20vh;" name="" id=""></textarea>
-        </form>
+
+        @if (User.Identity.IsAuthenticated) {
+            <p>Napišite komentar:</p>
+            <form action="" method="">
+                <textarea id="komentar" style="width: 80vw; height: 20vh; resize: none;"></textarea>
+                <button type="submit">Gumb</button>
+            </form>
+        }
+
     </div>
 
 </div>

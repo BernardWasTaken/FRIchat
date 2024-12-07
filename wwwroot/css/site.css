@@ -8,14 +8,24 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-nav{
+
+
+
+
+/* Navigacijska vrstica */
+
+
+
+
+
+#navigacijska-vrstica {
   background-color: #E12A26;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.navbar-logo {
+#zgornja-vrstica #logo {
   font-size: 40px;
 }
 
@@ -28,33 +38,49 @@ nav ul{
   align-items: center;
 }
 
-nav li{
+nav ul li {
+  display: flex;
+  align-items: center;
   height: 80px;
 }
 
-nav ul li form button {
-  color: white;
-  border: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  padding: 0;
-  background-color: #E12A26;
-}
-
-nav a{
+nav ul li a {
   color: white;
   height: 100%;
   padding: 0 30px;
   text-decoration: none;
   display: flex;
   align-items: center;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ccc;
+}
+
+nav form button {
+  background: none;
+  color: white;
+  border: none; 
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: inherit;
+  font-family: inherit; 
+}
+
+nav form button:hover {
+  color: #ccc;
 }
 
 nav li:first-child{
   margin-right: auto;
 }
 
-.sidebar{
+#stranska-vrstica {
   position: fixed;
   top: 0; 
   right: 0;
@@ -68,29 +94,34 @@ nav li:first-child{
   background-color: #e12926;
   color: white;
 }
-.sidebar li{
+
+#stranska-vrstica li {
   width: 100%;
 }
-.sidebar a{
+
+#stranska-vrstica li a {
   width: 100%;
   text-decoration: none;
   color: white;
 }
-.menu-button{
+
+.menu-gumb {
   display: none;
 }
+
 @media(max-width: 800px){
-  .hideOnMobile{
+  .skrij-mobile{
     display: none;
   }
-  .menu-button{
+
+  .menu-gumb {
     display: block;
     padding: 0;
   }
 }
 
 @media(max-width: 400px){
-  .sidebar{
+  #stranska-vrstica {
     width: 100%;
   }
 }
@@ -98,9 +129,7 @@ nav li:first-child{
 
 
 
-
-
-
+/* Glavni del */
 
 
 
@@ -123,6 +152,11 @@ nav li:first-child{
   font-weight: 600;
   text-decoration: none;
   align-items: center;
+  transition: all 0.25s ease;
+}
+
+.predmet-link:hover {
+  color: #E12A26;
 }
 
 

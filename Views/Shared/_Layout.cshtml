@@ -11,21 +11,18 @@
 
 <body>
     <header>
-        
-        <nav>
-            <ul class="sidebar">
-                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">O aplikaciji</a></li>
-                <li><a id="login" asp-area="Identity" asp-page="/Account/Login">Prijava</a></li>
-                <li><a id="register" asp-area="Identity" asp-page="/Account/Register">Registracija</a></li>
+        <nav id="navigacijska-vrstica">
+            <ul id="zgornja-vrstica">
+                <li><a id="logo" asp-controller="Home" asp-action="Index"><b>FRI</b>chat</a></li>
+                <li class="skrij-mobile"><a asp-controller="Home" asp-action="About">O aplikaciji</a></li>
+                <partial name="_LoginPartial"/>
+                <li class="menu-gumb" onclick=prikaziStranskoVrstico()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
 
-
-            <ul>
-                <li><a class="navbar-logo" asp-area="" asp-controller="Home" asp-action="Index"><b>FRI</b>chat</a></li>
-                <li class="hideOnMobile"><a asp-area="" asp-controller="Home" asp-action="About">O aplikaciji</a></li>
-                <partial name="_LoginPartial"/>
-                <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
+            <ul id="stranska-vrstica">
+                <li onclick=skrijStranskoVrstico()><a href=""><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">O aplikaciji</a></li>
+                <partial name="_LoginPartialMobile" />
             </ul>
         </nav>
 
@@ -36,12 +33,12 @@
     </div>
 
     <script>
-        function showSidebar(){
-        const sidebar = document.querySelector('.sidebar')
+        function prikaziStranskoVrstico(){
+        const sidebar = document.querySelector('#stranska-vrstica')
         sidebar.style.display = 'flex'
         }
-        function hideSidebar(){
-        const sidebar = document.querySelector('.sidebar')
+        function skrijStranskoVrstico(){
+        const sidebar = document.querySelector('#stranska-vrstica')
         sidebar.style.display = 'none'
         }
     </script>
