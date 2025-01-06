@@ -6,38 +6,50 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>O predmetu</h1>
-
 <div>
-    <hr />
-    <dl class="row">
-
-        <br>
-        <dd class = "col-sm-10">
-            <h3>Naslov predmeta: </h3>
-            @Html.DisplayFor(model => model.Ime)
-        </dd>
-        <br>
-        <dd class = "col-sm-10">
-            <h3>Predavatelj: </h3>
-            @Html.DisplayFor(model => model.Predavatelj)
-        </dd>
-        <br>
-        <dd class = "col-sm-10">
-            <h3>Letnik: </h3>
-            @Html.DisplayFor(model => model.Letnik)
-        </dd>
-        <br>
+    <dl class="vodoravno" style="display: flex; justify-content: space-around; align-items: flex-start; border: 1px solid black;">
+        <div>
+            <h3>Naslov predmeta:</h3>
+            <p>@Html.DisplayFor(model => model.Ime)</p>
+        </div>
+        <div>
+            <h3>Predavatelj:</h3>
+            <p>@Html.DisplayFor(model => model.Predavatelj)</p>
+        </div>
+        <div>
+            <h3>Letnik:</h3>
+            <p>@Html.DisplayFor(model => model.Letnik)</p>
+        </div>
     </dl>
 
     <div class="komentarji">
 
+   <h4>Komentarji:</h4>
+        <ul>
+            @if (Model.Komentarji != null && Model.Komentarji.Any()) 
+            {
+                foreach (var komentar in Model.Komentarji)
+                {
+                    <li>@komentar.UporabnikId: @komentar.Vsebina</li>
+                    //treba dodat preslikava iz uporabnik id v ime
+                }
+            }
+            else
+            {
+                <li>Nobenih komentarjev še ni.</li>
+            }
+        </ul>
+
+        <!--treba nardit da je skos na podnu-->
         @if (User.Identity.IsAuthenticated) {
             <p>Napišite komentar:</p>
-            <form action="" method="">
-                <textarea id="komentar" style="width: 80vw; height: 20vh; resize: none;"></textarea>
-                <button type="submit">Gumb</button>
+            <form asp-action="Create" asp-controller="Odgovor" method="post">
+                <input type="hidden" name="predmetId" value="@Model.Id" />
+                <input type="hidden" id="datumObjave" name="datumObjave" value="1"/>
+                <textarea name="vsebina" style="width: 80vw; height: 20vh; resize: none;"></textarea>
+                <button type="submit">Dodaj komentar</button>
             </form>
+            
         }
 
     </div>

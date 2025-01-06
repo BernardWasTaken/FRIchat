@@ -3,3 +3,8 @@ Pri predmetih za edit:
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+
+v predmet/details ne pošlje čez datuma in nekga id ... dodaj not pol bi moglo delat

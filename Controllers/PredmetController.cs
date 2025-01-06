@@ -33,8 +33,11 @@ namespace FRIchat.Controllers
                 return NotFound();
             }
 
+            // Naloži predmet in vključi povezane komentarje
             var predmet = await _context.Predmet
+                .Include(p => p.Komentarji)  // Naloži povezane komentarje
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (predmet == null)
             {
                 return NotFound();

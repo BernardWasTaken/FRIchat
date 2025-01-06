@@ -6,4 +6,7 @@ public class Predmet
     public string Ime { get; set; }
     public string Predavatelj { get; set; }
     public int Letnik { get; set; }
+
+    public ICollection<Odgovor> Komentarji { get; set; }
+
 }

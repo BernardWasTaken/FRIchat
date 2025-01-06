@@ -7,17 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FRIchat.Data;
 using FRIchat.Models;
+using Microsoft.AspNetCore.Identity;  
+
 
 namespace FRIchat.Controllers
 {
     public class OdgovorController : Controller
     {
-        private readonly FRIchatContext _context;
+            private readonly FRIchatContext _context;
+            private readonly UserManager<Uporabnik> _userManager;
 
-        public OdgovorController(FRIchatContext context)
-        {
-            _context = context;
-        }
+            public OdgovorController(FRIchatContext context, UserManager<Uporabnik> userManager)
+            {
+                _context = context;
+                _userManager = userManager;
+            }
+
+        
 
         // GET: Odgovor
         public async Task<IActionResult> Index()
@@ -44,40 +50,48 @@ namespace FRIchat.Controllers
         }
 
         // GET: Odgovor/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() { return View(); }
 
         // POST: Odgovor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Vsebina,DatumObjave,UporabnikId")] Odgovor odgovor)
+        public async Task<IActionResult> Create(int predmetId, string vsebina)
         {
-            if (ModelState.IsValid)
+            if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                _context.Add(odgovor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    var odgovor = new Odgovor
+                    {
+                        Vsebina = vsebina,
+                        DatumObjave = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        PredmetId = predmetId,
+                        UporabnikId = user.Id
+                        //user.id ma tezavo ker ga ne najde ... ce Console.WriteLine(user) ti izpise mail userja
+                    };
+
+                    _context.Add(odgovor);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Details", "Predmet", new { id = predmetId });
+                }
             }
-            return View(odgovor);
+
+            return Unauthorized();
         }
+
 
         // GET: Odgovor/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) { return NotFound(); }
 
             var odgovor = await _context.Odgovor.FindAsync(id);
-            if (odgovor == null)
-            {
-                return NotFound();
-            }
+            if (odgovor == null) { return NotFound(); }
             return View(odgovor);
         }
 
