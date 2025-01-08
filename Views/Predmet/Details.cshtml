@@ -6,6 +6,8 @@
     ViewData["Title"] = "Details";
 }
 
+<script src="~/js/chatroom.js"></script>
+
 <div>
     <dl class="vodoravno" style="display: flex; justify-content: space-around; align-items: flex-start; border: 1px solid black;">
         <div>
@@ -25,12 +27,16 @@
     <div class="komentarji">
 
    <h4>Komentarji:</h4>
-        <ul>
+        <ul style="margin-bottom: 300px">
             @if (Model.Komentarji != null && Model.Komentarji.Any()) 
             {
                 foreach (var komentar in Model.Komentarji)
                 {
-                    <li>@komentar.UporabnikId: @komentar.Vsebina</li>
+                    <div style="overflow-wrap: break-word;padding:10px;margin-top:10px;max-width:fit-content;min-height: fit-content;border: 1px solid black;display:flex;flex-direction:column;">
+                        <div style="font-weight: bold">@komentar.UporabnikId</div>
+                        <div style="">@komentar.Vsebina</div>
+                    </div>
+                    // <li>@komentar.UporabnikId: @komentar.Vsebina</li>
                     //treba dodat preslikava iz uporabnik id v ime
                 }
             }
@@ -42,13 +48,15 @@
 
         <!--treba nardit da je skos na podnu-->
         @if (User.Identity.IsAuthenticated) {
-            <p>Napišite komentar:</p>
-            <form asp-action="Create" asp-controller="Odgovor" method="post">
-                <input type="hidden" name="predmetId" value="@Model.Id" />
-                <input type="hidden" id="datumObjave" name="datumObjave" value="1"/>
-                <textarea name="vsebina" style="width: 80vw; height: 20vh; resize: none;"></textarea>
-                <button type="submit">Dodaj komentar</button>
-            </form>
+            <div style="position: fixed;bottom: 10px;display: flex;flex-direction: column;">
+                <p>Napišite komentar:</p>
+                <form asp-action="Create" asp-controller="Odgovor" method="post">
+                    <input type="hidden" name="predmetId" value="@Model.Id" />
+                    <input type="hidden" id="datumObjave" name="datumObjave" value="1"/>
+                    <textarea name="vsebina" style="min-height: 100px;max-height: 300px;overflow-y: auto;overflow-wrap: break-word; width: 80vw; resize: vertical;"></textarea><br/>
+                    <button type="submit">Dodaj komentar</button>
+                </form>
+            </div>
             
         }
 

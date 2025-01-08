@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FRIchat.Data;
 using FRIchat.Models;
-using Microsoft.AspNetCore.Identity;  
+using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic.CompilerServices;
 
 
 namespace FRIchat.Controllers
@@ -62,6 +63,7 @@ namespace FRIchat.Controllers
         {
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
+                var id = _userManager.GetUserId(User);
                 var user = await _userManager.GetUserAsync(User);
                 if (user != null)
                 {
@@ -70,7 +72,7 @@ namespace FRIchat.Controllers
                         Vsebina = vsebina,
                         DatumObjave = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                         PredmetId = predmetId,
-                        UporabnikId = user.Id
+                        UporabnikId = (await _userManager.FindByIdAsync(id)).UserName,
                         //user.id ma tezavo ker ga ne najde ... ce Console.WriteLine(user) ti izpise mail userja
                     };
 

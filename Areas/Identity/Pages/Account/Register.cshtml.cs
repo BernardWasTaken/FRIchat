@@ -126,13 +126,14 @@ namespace FRIchat.Areas.Identity.Pages.Account
                 user.Geslo = Input.Password;
                 user.Ime = Input.Email;
                 user.Telefon = Input.Telefon;
+                user.Id = (_userManager.Users.Max(x => (int?)x.Id) ?? 0) + 1;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
+                    var userId = user.Id;
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -143,7 +144,9 @@ namespace FRIchat.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    
+                    Console.WriteLine("User id: "+ user.Id);
+                    
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
