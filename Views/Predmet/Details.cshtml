@@ -6,9 +6,7 @@
     ViewData["Title"] = "Details";
 }
 
-<script src="~/js/chatroom.js"></script>
-
-<div>
+<div style="display: flex; flex-direction: column; height: 80vh;">
     <dl class="vodoravno" style="display: flex; justify-content: space-around; align-items: flex-start; border: 1px solid black;">
         <div>
             <h3>Naslov predmeta:</h3>
@@ -24,20 +22,24 @@
         </div>
     </dl>
 
-    <div class="komentarji">
-
-   <h4>Komentarji:</h4>
-        <ul style="margin-bottom: 300px">
+    <div class="komentarji" style="flex: 1; overflow-y: auto; margin-bottom: 150px;">
+        <h4>Komentarji:</h4>
+        <ul>
             @if (Model.Komentarji != null && Model.Komentarji.Any()) 
             {
                 foreach (var komentar in Model.Komentarji)
                 {
-                    <div style="overflow-wrap: break-word;padding:10px;margin-top:10px;max-width:fit-content;min-height: fit-content;border: 1px solid black;display:flex;flex-direction:column;">
-                        <div style="font-weight: bold">@komentar.UporabnikId</div>
-                        <div style="">@komentar.Vsebina</div>
-                    </div>
-                    // <li>@komentar.UporabnikId: @komentar.Vsebina</li>
-                    //treba dodat preslikava iz uporabnik id v ime
+                    //uporabnikId je treba preslikat v username
+                    <li style="border:1px solid black; margin-bottom: 10px; overflow-x: hidden;">
+                        @komentar.UporabnikId @komentar.DatumObjave
+                        
+                        <!-- komentar.UporabnikId == 0 justify-content treba spremenit name komentar.UporabnikId == prijavljenUser.id -->
+                        @if (komentar.UporabnikId.Equals(0)) {
+                            <p>uredi</p>
+                        }
+                        <br>
+                        @komentar.Vsebina
+                    </li>
                 }
             }
             else
@@ -45,22 +47,15 @@
                 <li>Nobenih komentarjev še ni.</li>
             }
         </ul>
-
-        <!--treba nardit da je skos na podnu-->
-        @if (User.Identity.IsAuthenticated) {
-            <div style="position: fixed;bottom: 10px;display: flex;flex-direction: column;">
-                <p>Napišite komentar:</p>
-                <form asp-action="Create" asp-controller="Odgovor" method="post">
-                    <input type="hidden" name="predmetId" value="@Model.Id" />
-                    <input type="hidden" id="datumObjave" name="datumObjave" value="1"/>
-                    <textarea name="vsebina" style="min-height: 100px;max-height: 300px;overflow-y: auto;overflow-wrap: break-word; width: 80vw; resize: vertical;"></textarea><br/>
-                    <button type="submit">Dodaj komentar</button>
-                </form>
-            </div>
-            
-        }
-
     </div>
 
-</div>
 
+</div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-action="Create" asp-controller="Odgovor" method="post" style="position: fixed; bottom: 0; width: 100%; background-color: white; border-top: 1px solid #ccc; margin-bottom: 20px;">
+            <input type="hidden" name="predmetId" value="@Model.Id" />
+            <textarea name="vsebina" style="width: 80%; height: 10vh; resize: none;"></textarea>
+            <br><button type="submit" style="width: 100px; height: 40px;">Dodaj komentar</button>
+        </form>
+    }

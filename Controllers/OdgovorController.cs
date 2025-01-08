@@ -70,7 +70,7 @@ namespace FRIchat.Controllers
                     var odgovor = new Odgovor
                     {
                         Vsebina = vsebina,
-                        DatumObjave = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        DatumObjave = DateTime.Now.ToString("MM-dd HH:mm"),
                         PredmetId = predmetId,
                         UporabnikId = (await _userManager.FindByIdAsync(id)).UserName,
                         //user.id ma tezavo ker ga ne najde ... ce Console.WriteLine(user) ti izpise mail userja
