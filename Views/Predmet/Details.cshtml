@@ -6,8 +6,8 @@
     ViewData["Title"] = "Details";
 }
 
-<div style="display: flex; flex-direction: column; height: 80vh;">
-    <dl class="vodoravno" style="display: flex; justify-content: space-around; align-items: flex-start; border: 1px solid black;">
+<div class="klepetalnica">
+    <dl class="vodoravno">
         <div>
             <h3>Naslov predmeta:</h3>
             <p>@Html.DisplayFor(model => model.Ime)</p>
@@ -21,22 +21,25 @@
             <p>@Html.DisplayFor(model => model.Letnik)</p>
         </div>
     </dl>
+    <br>
+    <hr/>
 
-    <div class="komentarji" style="flex: 1; overflow-y: auto; margin-bottom: 150px;">
-        <h4>Komentarji:</h4>
+    <div class="komentarji">
         <ul>
             @if (Model.Komentarji != null && Model.Komentarji.Any()) 
             {
                 foreach (var komentar in Model.Komentarji)
                 {
-                    //uporabnikId je treba preslikat v username
-                    <li style="border:1px solid black; margin-bottom: 10px; overflow-x: hidden;">
-                        @komentar.UporabnikId @komentar.DatumObjave
+                    <li class="komentar">
+                        <div class="glavaKomentarja">
+                            <p class="username">@komentar.UporabnikId &nbsp;&nbsp;</p>
+                            <!--Datum je --treba forrmatirat da nebo cudn-->
+                            <p class="datumObjave">@komentar.DatumObjave</p>
+                        </div>
                         
-                        <!-- komentar.UporabnikId == 0 justify-content treba spremenit name komentar.UporabnikId == prijavljenUser.id -->
-                        @if (komentar.UporabnikId.Equals(0)) {
-                            <p>uredi</p>
-                        }
+                        <!--treba nardit da lah editas .... rabim session user ID-->
+                        @if (komentar.UporabnikId.Equals(0)) { <p>uredi</p> }
+                        
                         <br>
                         @komentar.Vsebina
                     </li>
@@ -51,11 +54,13 @@
 
 
 </div>
+<div class="komentiraj">
     @if (User.Identity.IsAuthenticated)
     {
-        <form asp-action="Create" asp-controller="Odgovor" method="post" style="position: fixed; bottom: 0; width: 100%; background-color: white; border-top: 1px solid #ccc; margin-bottom: 20px;">
+        <form asp-action="Create" asp-controller="Odgovor" method="post">
             <input type="hidden" name="predmetId" value="@Model.Id" />
             <textarea name="vsebina" style="width: 80%; height: 10vh; resize: none;"></textarea>
             <br><button type="submit" style="width: 100px; height: 40px;">Dodaj komentar</button>
         </form>
     }
+</div>
