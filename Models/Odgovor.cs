@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace FRIchat.Models;
 
 public class Odgovor
@@ -6,6 +8,7 @@ public class Odgovor
     public string Vsebina { get; set; }
     public string DatumObjave { get; set; }
     public string UporabnikId { get; set; }
+    [Required]
     public int PredmetId { get; set; }
     public Predmet Predmet { get; set; }
 
