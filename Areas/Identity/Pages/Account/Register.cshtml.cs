@@ -126,7 +126,8 @@ namespace FRIchat.Areas.Identity.Pages.Account
                 user.Geslo = Input.Password;
                 user.Ime = Input.Email;
                 user.Telefon = Input.Telefon;
-                user.Id = (_userManager.Users.Max(x => (int?)x.Id) ?? 0) + 1;
+                //var maxUserId = _userManager.Users.Max(x => (int?)x.Id ?? 0);
+                //user.Id = Guid.Parse(maxUserId) == null ? Guid.NewGuid() : Guid.Parse(maxUserId) + Guid.Parse("00000000-0000-0000-0000-000000000001");
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

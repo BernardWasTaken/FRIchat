@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FRIchatContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("FRIchatContext") ?? throw new InvalidOperationException("Connection string 'FRIchatContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AzureContext") ?? throw new InvalidOperationException("Connection string 'AzureContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
