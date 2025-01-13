@@ -93,6 +93,7 @@ nav li:first-child{
   justify-content: flex-start;
   background-color: #e12926;
   color: white;
+  z-index: 1000;
 }
 
 #stranska-vrstica li {
@@ -118,6 +119,13 @@ nav li:first-child{
     display: block;
     padding: 0;
   }
+  #zapri-stransko-vrstico {
+    display: block;
+  }
+  
+  #zapri-stransko-vrstico a {
+    margin-left: 65%;
+  }
 }
 
 @media(max-width: 400px){
@@ -140,11 +148,19 @@ nav li:first-child{
   margin: 5vh 10vw;
 }
 
+/*HOME*/
+
 .predmet {
   margin-top: 5vh;
   padding: 2vh;
   border-radius: 5px;
-  border: 2px rgba(225, 42, 38, 0.5) solid; 
+  border: 1px rgba(225, 42, 38, 0.5) solid; 
+  background-color: rgb(245, 245, 245);
+  transition: all 0.25s ease;
+}
+
+.predmet:hover {
+  background-color: rgb(255, 255, 255);
 }
 
 .predmet-link {
@@ -159,21 +175,101 @@ nav li:first-child{
   color: #E12A26;
 }
 
+/*ABOUT*/
 
+.O-Aplikaciji {
+  font-size: larger;
+}
+
+.vprasanje {
+  font-size: xx-large;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*LOGIN*/
 
 .login {
-  width: 40vw;
-  margin: 0 20vw;
+  width: 30vw;
+  margin: 0 25vw;
   border: 2px rgba(225, 42, 38, 0.5) solid; 
   border-radius: 5px;
 }
 
-.login form{
-  margin: 20px;
+.login .prijava-sredina {
+  font-size: xx-large;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  border-bottom: 2px solid  rgba(225, 42, 38, 0.5);
 }
 
-.login .form {
-  padding: 5px 0px;
+.login .gumb-sredina {
+  font-size: xx-large;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.polje {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.polje label {
+  width: 30%;
+  text-align: left;
+  padding-right: 10px;
+  font-weight: bold;
+  margin-left: 20%;
+}
+
+.polje input {
+  width: 30%;
+  padding: 5px;
+  margin-right: 20%;
+}
+
+.text-danger {
+  font-size: smaller;
+  color: red;
+}
+
+.login .moznosti {
+  display: flex;
+  justify-content: center;
+}
+.login .moznosti p a {
+  text-decoration: none;
 }
 
 .login button {
@@ -183,11 +279,217 @@ nav li:first-child{
   color: white;
   font-weight: 800;
   border: 2px solid #e12926;
+  border-radius: 5px;
 }
 
 .login button:hover {
   height: 40px;
   width: 120px;
+  background-color: white;
+  color: #e12926;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  border: 2px solid #e12926;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+
+  .hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+.login .prijava-sredina {
+  font-size: 50px;
+  font-weight: bolder;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  font-size: x-large;
+}
+
+.login .gumb-sredina {
+  font-size: xx-large;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+}
+
+.polje {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.polje label {
+  width: 40%;
+  text-align: left;
+  font-weight: bold;
+  margin-left: 10%;
+}
+
+.polje input {
+  width: 40%;
+  margin-right: 10%;
+}
+
+.text-danger {
+  font-size: smaller;
+  color: red;
+}
+
+.login .moznosti {
+  display: flex;
+  justify-content: center;
+}
+.login .moznosti p a {
+  text-decoration: none;
+  font-size: large;
+}
+
+.login button {
+  height: 60px;
+  width: 200px;
+  background-color: #e12926;
+  color: white;
+  font-weight: 800;
+  border: 2px solid #e12926;
+  border-radius: 5px;
+  font-size: large;
+}
+
+.login button:hover {
+  height: 40px;
+  width: 120px;
+  background-color: white;
+  color: #e12926;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  border: 2px solid #e12926;
+  cursor: pointer;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .izberi-predmet {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .O-Aplikaciji {
+    width: 80vw;
+    margin: 0 10vw;  
+  }
+  .vodoravno {
+    padding: 10px 0;
+  }
+  .komentarji {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .komentiraj {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .komentiraj form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 30px;
+    margin-top: 0;
+    padding-top: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  .komentarji {
+    padding-bottom: 50px;
+  }
+}
+
+
+
+/*PREDMET*/
+.klepetalnica {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.vodoravno {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+}
+
+.komentarji {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 150px;
+}
+
+.komentarji .komentar {
+  margin-bottom: 10px;
+  overflow-x: hidden;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.glavaKomentarja {
+  display: flex;
+}
+
+.username {
+  color: #e12926;
+}
+
+.komentiraj {
+  border: none;
+}
+.komentiraj form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding-top: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.komentiraj button {
+  height: 50px;
+  width: 160px;
+  background-color: #e12926;
+  color: white;
+  font-weight: 800;
+  border: 2px solid #e12926;
+  border-radius: 5px;
+}
+
+.komentiraj button:hover {
+  height: 50px;
+  width: 160px;
   background-color: white;
   color: #e12926;
   font-weight: 800;
