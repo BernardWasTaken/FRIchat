@@ -27,7 +27,10 @@
                 <br>
                 
                 <div class="moznosti">
-                    <p><a id="forgot-password" asp-page="./ForgotPassword"> &nbsp;&nbsp;&nbsp; Pozabljeno geslo? </a><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Registracija?</a></p>
+                    <div class="row">
+                        <a id="forgot-password" asp-page="./ForgotPassword"> Pozabljeno geslo? </a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Registracija?</a>
+                    </div>
                 </div>
 
                 <div class="gumb-sredina" style="padding-bottom: 20px;">

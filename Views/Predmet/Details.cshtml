@@ -22,7 +22,6 @@
         </div>
     </dl>
     <br>
-    <hr/>
 
     <div class="komentarji">
         <ul>
@@ -41,7 +40,11 @@
                         @if (komentar.UporabnikId.Equals(0)) { <p>uredi</p> }
                         
                         <br>
-                        @komentar.Vsebina
+                        @komentar.Vsebina <br/>
+                        @if (!string.IsNullOrEmpty(komentar.DatotekaUrl))
+                        {
+                            <img src="@komentar.DatotekaUrl" alt="Ni slike" />
+                        }
                     </li>
                 }
             }
@@ -57,10 +60,17 @@
 <div class="komentiraj">
     @if (User.Identity.IsAuthenticated)
     {
-        <form asp-action="Create" asp-controller="Odgovor" method="post">
+        <form asp-action="Create" asp-controller="Odgovor" method="post" enctype="multipart/form-data">
             <input type="hidden" name="predmetId" value="@Model.Id" />
-            <textarea name="vsebina" style="width: 80%; height: 10vh; resize: none;"></textarea>
-            <br><button type="submit" style="width: 100px; height: 40px;">Dodaj komentar</button>
+            <textarea name="vsebina" id="text-area" style="width: 80%; height: 10vh; resize: none;"></textarea>
+            <br>
+            <div style="display: flex;">
+                <button type="submit" id="send-button" style="width: 100px; height: 40px;">Dodaj komentar</button>
+                <input type="file" id="image-input" accept="image/*" name="image"/>
+                <div class="image-div"><img id="file-img" src="/Resources/icons8-attach-60.png" alt="ni slike" /></div>
+            </div>
         </form>
     }
 </div>
+
+<script src="/js/chatroom.js"></script>

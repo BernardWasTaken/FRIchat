@@ -57,6 +57,14 @@ namespace FRIchat.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
+        private String SaveImage(IFormFile file)
+        {
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", fileName);
+            file.CopyTo(new FileStream(filePath, FileMode.Create));
+            return $"/uploads/{fileName}";
+        }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int predmetId, string vsebina)
@@ -69,12 +77,21 @@ namespace FRIchat.Controllers
                 {
                     var odgovor = new Odgovor
                     {
-                        Vsebina = vsebina,
+                        Vsebina = string.Empty,
                         DatumObjave = DateTime.Now.ToString("MM-dd HH:mm"),
                         PredmetId = predmetId,
+                        DatotekaUrl = string.Empty,
                         UporabnikId = (await _userManager.FindByIdAsync(id)).UserName,
                         //user.id ma tezavo ker ga ne najde ... ce Console.WriteLine(user) ti izpise mail userja
                     };
+                    if (vsebina != null)
+                    {
+                        odgovor.Vsebina = vsebina;
+                    }
+                    if (Request.Form.Files.Count > 0)
+                    {
+                        odgovor.DatotekaUrl = SaveImage(Request.Form.Files[0]);
+                    }
 
                     _context.Add(odgovor);
                     await _context.SaveChangesAsync();
