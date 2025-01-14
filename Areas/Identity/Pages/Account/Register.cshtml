@@ -16,25 +16,32 @@
 
             <div class="polje">
                 <label asp-for="Input.Email">Email</label>
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="ime@domena.com" />
             </div>
+
             <div class="polje">
                 <label asp-for="Input.Telefon">Telefon</label>
-                <input asp-for="Input.Telefon" class="form-control" autocomplete="new-password" aria-required="true" placeholder="telefon" />
-                <span asp-validation-for="Input.Telefon" class="text-danger"></span>
+                <input asp-for="Input.Telefon" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Telefon" />
             </div>
+            
             <div class="polje">
                 <label asp-for="Input.Password">Geslo</label>
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Geslo" />
             </div>
+            
             <div class="polje">
                 <label asp-for="Input.ConfirmPassword">Potrdite geslo</label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Ponovi geslo" />
             </div>
             <br>
+
+            <div align="center">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Telefon" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>    
+            </div>
+            
         
             <div class="moznosti">
                 <p><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Se želite prijaviti?</a></p>

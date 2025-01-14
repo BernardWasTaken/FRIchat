@@ -1,7 +1,6 @@
 *{
   margin: 0;
   padding: 0;
-  background-color: #252947;
 }
 
 body{
@@ -20,7 +19,7 @@ body{
 
 
 #navigacijska-vrstica {
-  background-color: #202541;
+  background-color: #E12A26;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   margin-top: auto;
   margin-bottom: auto;
@@ -92,8 +91,9 @@ nav li:first-child{
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #202541;
+  background-color: #e12926;
   color: white;
+  z-index: 1000;
 }
 
 #stranska-vrstica li {
@@ -118,6 +118,13 @@ nav li:first-child{
   .menu-gumb {
     display: block;
     padding: 0;
+  }
+  #zapri-stransko-vrstico {
+    display: block;
+  }
+  
+  #zapri-stransko-vrstico a {
+    margin-left: 65%;
   }
 }
 
@@ -147,25 +154,17 @@ nav li:first-child{
   margin-top: 5vh;
   padding: 2vh;
   border-radius: 5px;
-  border: 1px #4289F3 solid; 
-  background-color: #252947;
+  border: 1px rgba(225, 42, 38, 0.5) solid; 
+  background-color: rgb(245, 245, 245);
   transition: all 0.25s ease;
 }
 
-.predmet *{
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.predmet:hover * {
-  background-color: #202541;
-}
 .predmet:hover {
-  background-color: #202541;
+  background-color: rgb(255, 255, 255);
 }
 
 .predmet-link {
-  color: white;
+  color: black;
   font-weight: 600;
   text-decoration: none;
   align-items: center;
@@ -173,23 +172,17 @@ nav li:first-child{
 }
 
 .predmet-link:hover {
-  color: #4289F3;
+  color: #E12A26;
 }
 
 /*ABOUT*/
 
-.O-Aplikaciji{
+.O-Aplikaciji {
   font-size: larger;
 }
 
 .vprasanje {
   font-size: xx-large;
-  color: #4289F3;
-}
-
-p{
-  font-size: larger;
-  color: white;
 }
 
 
@@ -223,7 +216,7 @@ p{
 .login {
   width: 30vw;
   margin: 0 25vw;
-  border: 2px #4289F3 solid; 
+  border: 2px rgba(225, 42, 38, 0.5) solid; 
   border-radius: 5px;
 }
 
@@ -233,7 +226,7 @@ p{
   display: flex;
   justify-content: center;
   padding: 20px 0;
-  border-bottom: 2px solid  #4289F3;
+  border-bottom: 2px solid  rgba(225, 42, 38, 0.5);
 }
 
 .login .gumb-sredina {
@@ -244,40 +237,48 @@ p{
   padding: 20px 0;
 }
 
-.login .polje {
+.polje {
   display: flex;
-  justify-content: center;
-  padding: 10px 0;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.login .polje input {
-  width: 200px;
-  margin-left: 25px;
+.polje label {
+  width: 30%;
+  text-align: left;
+  padding-right: 10px;
+  font-weight: bold;
+  margin-left: 20%;
+}
+
+.polje input {
+  width: 30%;
+  padding: 5px;
+  margin-right: 20%;
+}
+
+.text-danger {
+  font-size: smaller;
+  color: red;
 }
 
 .login .moznosti {
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
-.login .moznosti .row {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.login .moznosti a {
-  text-align: center;
+.login .moznosti p a {
   text-decoration: none;
-  color: #FC6868;
 }
 
 .login button {
   height: 40px;
   width: 120px;
-  background-color: #4289F3;
+  background-color: #e12926;
   color: white;
   font-weight: 800;
-  border: 2px solid #4289F9;  
+  border: 2px solid #e12926;
   border-radius: 5px;
 }
 
@@ -285,10 +286,10 @@ p{
   height: 40px;
   width: 120px;
   background-color: white;
-  color: #4289F9;
+  color: #e12926;
   font-weight: 800;
   transition: all 0.3s ease;
-  border: 2px solid #4289F3;
+  border: 2px solid #e12926;
   cursor: pointer;
 }
 
@@ -300,7 +301,12 @@ p{
     padding: 0;
   }
 
-  
+  .hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
 .login .prijava-sredina {
   font-size: 50px;
   font-weight: bolder;
@@ -318,16 +324,29 @@ p{
   justify-content: center;
 }
 
-.login .polje {
+.polje {
   display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  font-size: x-large;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.login .polje input {
-  width: 270px;
-  margin-left: 15px;
+.polje label {
+  width: 40%;
+  text-align: left;
+  font-weight: bold;
+  margin-left: 10%;
+}
+
+.polje input {
+  width: 40%;
+  margin-right: 10%;
+}
+
+.text-danger {
+  font-size: smaller;
+  color: red;
 }
 
 .login .moznosti {
@@ -342,10 +361,10 @@ p{
 .login button {
   height: 60px;
   width: 200px;
-  background-color: #4289F3;
+  background-color: #e12926;
   color: white;
   font-weight: 800;
-  border: 2px solid #4289F9;
+  border: 2px solid #e12926;
   border-radius: 5px;
   font-size: large;
 }
@@ -354,10 +373,10 @@ p{
   height: 40px;
   width: 120px;
   background-color: white;
-  color: #4289F9;
+  color: #e12926;
   font-weight: 800;
   transition: all 0.3s ease;
-  border: 2px solid #4289F3;
+  border: 2px solid #e12926;
   cursor: pointer;
 }
 
@@ -372,9 +391,39 @@ p{
 
 
 
-
-
-
+@media only screen and (max-width: 600px) {
+  .izberi-predmet {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .O-Aplikaciji {
+    width: 80vw;
+    margin: 0 10vw;  
+  }
+  .vodoravno {
+    padding: 10px 0;
+  }
+  .komentarji {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .komentiraj {
+    width: 80vw;
+    margin: 0 10vw;
+  }
+  .komentiraj form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 30px;
+    margin-top: 0;
+    padding-top: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  .komentarji {
+    padding-bottom: 50px;
+  }
+}
 
 
 
@@ -386,11 +435,10 @@ p{
 }
 
 .vodoravno {
-  color: #4289F3;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  background-color: #252947;
+  background-color: rgb(240, 240, 240);
   border-radius: 10px;
 }
 
@@ -398,57 +446,22 @@ p{
   flex: 1;
   overflow-y: auto;
   margin-bottom: 150px;
-  background-color: #252947;
 }
 
 .komentarji .komentar {
   margin-bottom: 10px;
   overflow-x: hidden;
-  background-color: #202541;
-  color: white;
+  background-color: rgb(245, 245, 245);
   border-radius: 5px;
   padding: 10px 20px;
 }
 
-.komentarji .komentar img {
-  max-width: 100%;
-}
-
-#image-input{
-  display: none;
-}
-
-.image-div{
-  max-width: 30px;
-  max-height: 30px;
-}
-
-.image-div img{
-  max-width: 100%;
-  max-height: 100%;
-}
-
 .glavaKomentarja {
   display: flex;
-  background-color: #202541;
-}
-
-.komentarji::-webkit-scrollbar {
-  background-color: #202541;
-}
-.komentarji::-webkit-scrollbar-thumb {
-  background-color: #4289F3;
-  border-radius: 10px;
 }
 
 .username {
-  background-color: #202541;
-  color: #FC6868;
-}
-
-.datumObjave{
-  background-color: #202541;
-  color: #4289F3;
+  color: #e12926;
 }
 
 .komentiraj {
@@ -464,29 +477,23 @@ p{
   font-family: 'Poppins', sans-serif;
 }
 
-.komentiraj form button{
-  border: 1px solid #4289F9;
-  border-radius: 10px;
+.komentiraj button {
+  height: 50px;
+  width: 160px;
+  background-color: #e12926;
   color: white;
-  background-color: #4289F3;
+  font-weight: 800;
+  border: 2px solid #e12926;
+  border-radius: 5px;
 }
-.komentiraj form button:hover {
+
+.komentiraj button:hover {
+  height: 50px;
+  width: 160px;
   background-color: white;
-  color: #4289F9;
-  border: 1px solid #4289F3;
+  color: #e12926;
+  font-weight: 800;
   transition: all 0.3s ease;
+  border: 2px solid #e12926;
   cursor: pointer;
-}
-
-.komentiraj form textarea {
-  border: 1px solid #4289F3;
-  border-radius: 10px;
-  caret-color: white;
-  color: white;
-  padding: 10px;
-}
-
-.komentiraj form textarea:focus {
-  outline: none !important;
-  border: 1px solid #4289F3;
 }

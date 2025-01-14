@@ -16,21 +16,18 @@
                 <br>
 
                 <div class="polje">
-                    <p>Email: </p>
+                    <label asp-for="Input.Email">Email</label>
                     <input asp-for="Input.Email"  aria-required="true" placeholder="ime@domena.com" />
                 </div>
                 
                 <div class="polje">
-                    <p>Geslo: </p>
+                    <label asp-for="Input.Password">Geslo</label>
                     <input asp-for="Input.Password" aria-required="true" placeholder="Geslo" />
                 </div>
                 <br>
                 
                 <div class="moznosti">
-                    <div class="row">
-                        <a id="forgot-password" asp-page="./ForgotPassword"> Pozabljeno geslo? </a>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Registracija?</a>
-                    </div>
+                    <p><a id="forgot-password" asp-page="./ForgotPassword"> &nbsp;&nbsp;&nbsp; Pozabljeno geslo? </a><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Registracija?</a></p>
                 </div>
 
                 <div class="gumb-sredina" style="padding-bottom: 20px;">
