@@ -15,8 +15,8 @@ namespace FRIchat.Controllers
 {
     public class OdgovorController : Controller
     {
-            private readonly FRIchatContext _context;
-            private readonly UserManager<Uporabnik> _userManager;
+            public readonly FRIchatContext _context;
+            public readonly UserManager<Uporabnik> _userManager;
 
             public OdgovorController(FRIchatContext context, UserManager<Uporabnik> userManager)
             {

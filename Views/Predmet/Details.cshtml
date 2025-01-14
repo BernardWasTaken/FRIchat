@@ -24,7 +24,7 @@
     <br>
 
     <div class="komentarji">
-        <ul>
+        <ul id="parent-ul">
             @if (Model.Komentarji != null && Model.Komentarji.Any()) 
             {
                 foreach (var komentar in Model.Komentarji)
@@ -40,7 +40,7 @@
                         @if (komentar.UporabnikId.Equals(0)) { <p>uredi</p> }
                         
                         <br>
-                        @komentar.Vsebina <br/>
+                        @komentar.Vsebina
                         @if (!string.IsNullOrEmpty(komentar.DatotekaUrl))
                         {
                             <img src="@komentar.DatotekaUrl" alt="Ni slike" />
@@ -61,7 +61,8 @@
     @if (User.Identity.IsAuthenticated)
     {
         <form asp-action="Create" asp-controller="Odgovor" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="predmetId" value="@Model.Id" />
+            <input type="hidden" id="predmetId" name="predmetId" value="@Model.Id" />
+            <input type="hidden" id="user" name="user" value="@User.Identity.Name"/>
             <textarea name="vsebina" id="text-area" style="width: 80%; height: 10vh; resize: none;"></textarea>
             <br>
             <div style="display: flex;">
@@ -73,4 +74,5 @@
     }
 </div>
 
+<script src="/js/signalr.js"></script>
 <script src="/js/chatroom.js"></script>
