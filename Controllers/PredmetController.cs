@@ -7,25 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FRIchat.Data;
 using FRIchat.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FRIchat.Controllers
 {
     public class PredmetController : Controller
     {
         private readonly FRIchatContext _context;
-
+        
         public PredmetController(FRIchatContext context)
         {
             _context = context;
         }
 
         // GET: Predmet
+        [Authorize]
         public async Task<IActionResult> Index()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return Unauthorized();
+            }
             return View(await _context.Predmet.ToListAsync());
         }
 
         // GET: Predmet/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,6 +54,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Predmet/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -120,6 +128,7 @@ namespace FRIchat.Controllers
         }
 
         // GET: Predmet/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

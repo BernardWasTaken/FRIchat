@@ -3,6 +3,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Predmeti", "Index", "Predmet")
+}
+
 <div class="izberi-predmet">
 
     <div class="predmet">
