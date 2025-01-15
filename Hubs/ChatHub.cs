@@ -8,6 +8,11 @@ public class ChatHub : Hub
     {
         await Clients.All.SendAsync("ReceiveMessage", user, message, image);
     }
+
+    public async Task DeleteMessage(string odgovorId)
+    {
+        await Clients.All.SendAsync("DeleteForAll", odgovorId);
+    }
     
     
 }

@@ -41,6 +41,28 @@ async function saveMessage(predmetId, vsebina, datotekaUrl) {
     }
 }
 
+async function deleteMessage(odgovorId) {
+    try {
+        const response = await fetch('/api/Api/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            },
+            body: JSON.stringify({ odgovorId: odgovorId })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Delete failed: ${response.status} - ${errorText || response.statusText}`);
+        }
+        
+    } catch (error) {
+        console.error("Error deleting message:", error);
+        throw error;
+    }
+}
+
 async function saveImage(file){
     const formData = new FormData();
     formData.append('file', file);
@@ -70,8 +92,13 @@ window.onload = function() {
     addFileEventListener();
 
     document.getElementById("send-button").disabled = true;
-
-    connection.on("ReceiveMessage", function (user, message, image) {
+    
+    connection.on("DeleteForAll", function (odgovorId){
+        console.log("deleted message:", odgovorId);
+        
+    });
+    
+    connection.on("ReceiveMessage", function (user, message, image, odgovorId) {
         console.log("ReceiveMessage message: " + message);
         console.log("ReceiveMessage user: " + user);
         console.log("ReceiveMessage image: " + image);
@@ -81,12 +108,27 @@ window.onload = function() {
         div.className = "glavaKomentarja";
         var pUsername = document.createElement("p");
         pUsername.className = "username";
-        pUsername.textContent = user;
+        pUsername.innerHTML = user + " &nbsp;&nbsp;";
         var pDatum = document.createElement("p");
         pDatum.className = "datumObjave";
-        pDatum.textContent = new Date().toLocaleDateString("sl-SI", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Ljubljana" });
-        div.appendChild(pUsername);
-        div.appendChild(pDatum);
+        var date = new Date();
+        const month = new Intl.DateTimeFormat("en-US", { month: "2-digit", timeZone: "Europe/Ljubljana" }).format(date);
+        const day = new Intl.DateTimeFormat("en-US", { day: "2-digit", timeZone: "Europe/Ljubljana" }).format(date);
+        const time = new Intl.DateTimeFormat("en-US", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Ljubljana" }).format(date);
+        pDatum.textContent = `${month}-${day} ${time}`;
+        var flexDiv = document.createElement("div");
+        flexDiv.style = "display: flex;";
+        flexDiv.appendChild(pUsername);
+        flexDiv.appendChild(pDatum);
+        div.appendChild(flexDiv);
+        
+        if(user == document.getElementById("user").value){
+            var del = document.createElement("div");
+            del.className = "delete";
+            del.id = "delete" + odgovorId;
+            del.innerHTML = "";
+            div.appendChild(del);
+        }
         var br = document.createElement("br");
         li.appendChild(div);
         li.appendChild(br);
@@ -112,12 +154,31 @@ window.onload = function() {
     }).catch(function(err) {
         return console.error(err);
     });
+    
+    document.getElementById("delete").addEventListener("click", async function () {
+        var odgovorId = document.getElementById("odgovorId").value;
+        if (odgovorId !== "") {
+            await deleteMessage(odgovorId);
+            
+            connection.invoke("DeleteMessage", odgovorId).catch(function(err) {
+                return console.error(err);
+            });
+        }
+    });
 
     document.getElementById("send-button").addEventListener("click", async function (event) {
         event.preventDefault();
 
         var user = document.getElementById("user").value;
         var message = document.getElementById("text-area").value;
+        var vecja = 1000000;
+        for (let i = 100000; i >= 0; i--) {
+            if(document.getElementById("delete"+i)){
+                vecja = i;
+                break;
+            }
+        }
+        //var odgovorId = document.getElementById("odgovorId"+vecja+1).value;
         var image;
         var imagePath;
         if (document.getElementById("image-input").files.length > 0) {

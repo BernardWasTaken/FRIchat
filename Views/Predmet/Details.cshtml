@@ -31,16 +31,20 @@
                 {
                     <li class="komentar">
                         <div class="glavaKomentarja">
-                            <p class="username">@komentar.UporabnikId &nbsp;&nbsp;</p>
-                            <!--Datum je --treba forrmatirat da nebo cudn-->
-                            <p class="datumObjave">@komentar.DatumObjave</p>
+                            <div style="display: flex;">
+                                <p class="username">@komentar.UporabnikId &nbsp;&nbsp;</p>
+                                <!--Datum je --treba forrmatirat da nebo cudn-->
+                                <p class="datumObjave">@komentar.DatumObjave</p>
+                            </div>
+                            @if (komentar.UporabnikId == User.Identity.Name)
+                            {
+                                <div class="delete" id="delete"></div>
+                            }
                         </div>
-                        
-                        <!--treba nardit da lah editas .... rabim session user ID-->
-                        @if (komentar.UporabnikId.Equals(0)) { <p>uredi</p> }
-                        
+                        <input type="hidden" name="odgovorId" id="odgovorId" value="@komentar.Id" />
                         <br>
                         @komentar.Vsebina
+                        <br>
                         @if (!string.IsNullOrEmpty(komentar.DatotekaUrl))
                         {
                             <img src="@komentar.DatotekaUrl" alt="Ni slike" />

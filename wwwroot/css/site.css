@@ -431,6 +431,7 @@ p{
 .glavaKomentarja {
   display: flex;
   background-color: #202541;
+  justify-content: space-between;
 }
 
 .komentarji::-webkit-scrollbar {
@@ -470,6 +471,13 @@ p{
   color: white;
   background-color: #4289F3;
 }
+.delete{
+  max-width: fit-content;
+  background-color: #202541;
+  cursor: pointer;
+  right: 0;
+}
+
 .komentiraj form button:hover {
   background-color: white;
   color: #4289F9;
@@ -489,4 +497,27 @@ p{
 .komentiraj form textarea:focus {
   outline: none !important;
   border: 1px solid #4289F3;
+}
+
+
+.nav-link{
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item{
+  cursor: pointer;
+  list-style-type: none;
+  border: 1px solid #4289F3;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 7px;
+  margin-top: 3px;
+  max-width: fit-content;
+}
+
+.nav-item:hover{
+  border: 1px solid white;
+  border-radius: 10px;
+  color: #4289F3;
 }

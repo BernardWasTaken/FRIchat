@@ -82,7 +82,19 @@ namespace FRIchat.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-        
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> Delete(int odgovorId)
+        {
+            if (!User.Identity.IsAuthenticated || User.Identity == null)
+            {
+                return Unauthorized();
+            }
+            
+            await _IOdgovorService.DeleteOdgovorAsync(odgovorId);
+            
+            return Ok();
+        }
         public class SaveMessageModel
         {
             public int predmetId { get; set; }

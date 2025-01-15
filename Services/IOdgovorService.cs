@@ -7,5 +7,6 @@ namespace FRIchat.Services
     {
         Task CreateOdgovorAsync(int predmetId, string vsebina, string datotekaUrl, string uporabnikId);
         Task<string> SaveImageAsync(IFormFile file);
+        Task DeleteOdgovorAsync(int odgovorId);
     }
 }

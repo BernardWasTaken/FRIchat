@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FRIchat.Services
 {
@@ -51,6 +52,17 @@ namespace FRIchat.Services
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", fileName);
             file.CopyTo(new FileStream(filePath, FileMode.Create));
             return $"/uploads/{fileName}";
+        }
+
+        public async Task DeleteOdgovorAsync(int odgovorId)
+        {
+            var odgovor = await _context.Odgovor.FindAsync(odgovorId);
+            if (odgovor != null)
+            {
+                _context.Odgovor.Remove(odgovor);
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 }
