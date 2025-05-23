@@ -248,11 +248,13 @@ p{
   display: flex;
   justify-content: center;
   padding: 10px 0;
+  color: white;
 }
 
 .login .polje input {
   width: 200px;
   margin-left: 25px;
+  color: white;
 }
 
 .login .moznosti {
@@ -472,7 +474,9 @@ p{
   background-color: #4289F3;
 }
 .delete{
-  max-width: fit-content;
+  width: 24px;
+  height: 24px;
+  background-image: url("../Resources/bin24.png");
   background-color: #202541;
   cursor: pointer;
   right: 0;

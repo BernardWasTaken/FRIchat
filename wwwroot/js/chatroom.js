@@ -122,7 +122,7 @@ window.onload = function() {
         flexDiv.appendChild(pDatum);
         div.appendChild(flexDiv);
         
-        if(user == document.getElementById("user").value){
+        if(user == "test@gmail.com"){
             var del = document.createElement("div");
             del.className = "delete";
             del.id = "delete" + odgovorId;
@@ -154,30 +154,19 @@ window.onload = function() {
     }).catch(function(err) {
         return console.error(err);
     });
-    
-    document.getElementById("delete").addEventListener("click", async function () {
-        var odgovorId = document.getElementById("odgovorId").value;
-        if (odgovorId !== "") {
-            await deleteMessage(odgovorId);
-            
-            connection.invoke("DeleteMessage", odgovorId).catch(function(err) {
-                return console.error(err);
-            });
-        }
-    });
 
     document.getElementById("send-button").addEventListener("click", async function (event) {
         event.preventDefault();
 
         var user = document.getElementById("user").value;
         var message = document.getElementById("text-area").value;
-        var vecja = 1000000;
+        /*var vecja = 1000000;
         for (let i = 100000; i >= 0; i--) {
             if(document.getElementById("delete"+i)){
                 vecja = i;
                 break;
             }
-        }
+        }*/
         //var odgovorId = document.getElementById("odgovorId"+vecja+1).value;
         var image;
         var imagePath;
@@ -190,6 +179,7 @@ window.onload = function() {
         }
         if(message !== "" || imagePath !== ""){
             console.log("img path: " +imagePath);
+            console.log("saving message");
             await saveMessage(document.getElementById("predmetId").value, message, imagePath);
         }
 

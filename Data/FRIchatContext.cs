@@ -25,11 +25,27 @@ namespace FRIchat.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
             builder.Entity<Uporabnik>().ToTable("Uporabnik");
             builder.Entity<Odgovor>().ToTable("Odgovor");
             builder.Entity<Objava>().ToTable("Objava");
             builder.Entity<OdgovorObjava>().ToTable("OdgovorObjava");
             builder.Entity<Predmet>().ToTable("Predmet");
+
+            builder.Entity<Predmet>().HasData(
+                new Predmet { Id=1, Ime = "Programiranje 1", Predavatelj = "Janez Demšar", Letnik = 1 },
+                new Predmet { Id=2, Ime = "Podatkovne Baze", Predavatelj = "Matjaž Kukar", Letnik = 1 },
+                new Predmet { Id=3, Ime = "Računalniška Arhitektura", Predavatelj = "Robert Rozman", Letnik = 1 },
+                
+                new Predmet { Id=4,Ime = "Informacijski sistemi", Predavatelj = "Damjan Vavpotič", Letnik = 2 },
+                new Predmet { Id=5, Ime = "Razvoj Informacijskih Sistemov", Predavatelj = "Alenka Kavčič", Letnik = 2 },
+                new Predmet { Id=6, Ime = "Vhodno-Izhodne Naprave", Predavatelj = "Robert Rozman", Letnik = 2 },
+                 
+                new Predmet { Id=7, Ime = "Praksa", Predavatelj = "/", Letnik = 3 }
+                
+                
+                );
+
         }
     }
 }
