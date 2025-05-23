@@ -11,7 +11,7 @@ using ApiController = System.Web.Http.ApiController;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FRIchatContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AzureContext") ?? throw new InvalidOperationException("Connection string 'AzureContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FRIchatContext") ?? throw new InvalidOperationException("Connection string 'AzureContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -36,9 +36,12 @@
                                 <!--Datum je --treba forrmatirat da nebo cudn-->
                                 <p class="datumObjave">@komentar.DatumObjave</p>
                             </div>
-                            @if (komentar.UporabnikId == User.Identity.Name)
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <div class="delete" id="delete"></div>
+                                if (User.Identity.Name.Equals("test@gmail.com"))
+                                {
+                                    <div class="delete" id="delete"></div>
+                                }
                             }
                         </div>
                         <input type="hidden" name="odgovorId" id="odgovorId" value="@komentar.Id" />
@@ -51,10 +54,6 @@
                         }
                     </li>
                 }
-            }
-            else
-            {
-                <li>Nobenih komentarjev še ni.</li>
             }
         </ul>
     </div>

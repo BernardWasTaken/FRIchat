@@ -3,9 +3,9 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (User.IsInRole("Admin"))
+@if (User.Identity.Name == "test@gmail.com")
 {
-    @Html.ActionLink("Predmeti", "Index", "Predmet")
+    @Html.ActionLink("Predmet", "Index", "Predmet")
 }
 
 <div class="izberi-predmet">

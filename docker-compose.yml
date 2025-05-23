@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-server-instance
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: !Bernibarni890
+    ports:
+      - "1433:1433"
+    volumes:
+      - $HOME/docker/mssql-data:/var/opt/mssql/data
+    restart: unless-stopped

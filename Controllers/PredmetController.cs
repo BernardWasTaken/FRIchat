@@ -21,10 +21,9 @@ namespace FRIchat.Controllers
         }
 
         // GET: Predmet
-        [Authorize]
         public async Task<IActionResult> Index()
         {
-            if (!User.IsInRole("Admin"))
+            if (!User.Identity.Name.Equals("test@gmail.com"))
             {
                 return Unauthorized();
             }
@@ -32,7 +31,6 @@ namespace FRIchat.Controllers
         }
 
         // GET: Predmet/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
